@@ -1,0 +1,65 @@
+# Photo manifest. One line per image:  slug | path inside "GCI Admin/Videos and Photos" in Dropbox
+# Picked Oct 27, 2026 by browsing the folders. Download the originals into one folder named by slug, then run
+# site-src/make-web-images.py <folder>: it auto-orients each file and writes site-src/img/<slug>-2400.jpg and
+# <slug>-1200.jpg. An optional third field holds options, e.g. "crop-bottom:22" trims a date stamp off the bottom.
+# Hero video (site-src/video/hero-h.mp4 and hero-v.mp4, made by site-src/make-hero-video.py) comes from
+# Edited Videos & Photos/GCI.230418.Compilation.h0037.101.mp4 and GCI.230419.Compilation.v0037.102.mp4.
+# Not used: the June 2024 Norwalk shot of the crew carrying pipe (Large-24) shows a subcontractor's vest front and center,
+# and the October 2023 South Campus conduit shot (TimePhoto_20231003_091432) has the CM's inspector in the foreground.
+# Dropped Oct 28 (Evan): team-drone and team-drone-close (outdated roster), shop-aerial and shop-building (wasted space),
+# crew-portrait-1/2/3/4, norwalk-operator and norwalk-signal (single-person shots in plain hats, no Gerber branding; Evan: Join the
+# Crew photos need Gerber branding). Note the lunch shot (crew-lunch) stays: Evan's "plain hats" note meant the singles.
+# Dropped Oct 28 as weak: Norwalk Large-38 (excavator bucket, low angle), Bowers-1 trench (no people or machines) stays only in the Bowers gallery.
+
+# Norwalk High School, June 2024 shoot
+norwalk-aerial     | Edited Videos & Photos/Norwalk High School/20240604/GCI.240604.NorwalkHighSchoolUpdate.Large-2.jpg
+norwalk-crew       | Edited Videos & Photos/Norwalk High School/20240604/GCI.240604.NorwalkHighSchoolUpdate.Large-12.jpg
+norwalk-grading    | Edited Videos & Photos/Norwalk High School/20240604/GCI.240604.NorwalkHighSchoolUpdate.Large-5.jpg
+norwalk-trench     | Edited Videos & Photos/Norwalk High School/20240604/GCI.240604.NorwalkHighSchoolUpdate.Large-4.jpg
+norwalk-topdown    | Edited Videos & Photos/Norwalk High School/20240604/GCI.240604.NorwalkHighSchoolUpdate.Large-3.jpg
+# Norwalk High School, November 2024 shoot
+norwalk-nov-aerial | Edited Videos & Photos/Norwalk High School/20241108/GCI.241108.NorwalkHighSchool.LARGE-1.jpg
+norwalk-nov-pipe   | Edited Videos & Photos/Norwalk High School/20241108/GCI.241108.NorwalkHighSchool.LARGE-3.jpg
+norwalk-nov-crew   | Edited Videos & Photos/Norwalk High School/20241108/GCI.241108.NorwalkHighSchool.LARGE-12.jpg
+norwalk-nov-direct | Edited Videos & Photos/Norwalk High School/20241108/GCI.241108.NorwalkHighSchool.LARGE-24.jpg
+# Bowers Elementary, April 2023 shoot
+bowers-trench      | Edited Videos & Photos/Bowers/GCI.230404.Bowers-1.jpg
+bowers-aerial      | Edited Videos & Photos/Bowers/GCI.230404.Bowers-4.jpg
+bowers-boom        | Edited Videos & Photos/Bowers/GCI.230404.Bowers-7.jpg
+bowers-operator    | Edited Videos & Photos/Bowers/GCI.230404.Bowers-16.jpg
+bowers-loading     | Edited Videos & Photos/Bowers/GCI.230404.Bowers-2.jpg
+# Osgood Park, April 2023 shoot
+osgood-building    | Edited Videos & Photos/Osgood/GCI.230404.Osgood-6.jpg
+osgood-field       | Edited Videos & Photos/Osgood/GCI.230404.Osgood-3.jpg
+osgood-excavator   | Edited Videos & Photos/Osgood/GCI.230404.Osgood-11.jpg
+# Route 140 over Charters Brook, 2021 job photos
+route140-cofferdam | 2021/2021_08/Route 140 Bridge/20210803_140005.jpg
+route140-sheeting  | 2021/2021_07/Route 140 Bridge/20210705_102933_01.jpg
+route140-pour      | 2021/2021_08/Route 140 Bridge/20210821_120457.jpg
+# UConn Athletic District: November 2020 drone (finished district in fall color) and June 2020 pipe crew.
+# The December 2020 snow shots (Full Site.JPG, Grandstands.JPG) were dropped: snow hides the work.
+uconn-athletic-overview   | 2020/2020_11/UConn Athletic District/Site Overview.JPG
+uconn-athletic-softball   | 2020/2020_11/UConn Athletic District/Softball (2).JPG
+uconn-athletic-pipe-crew  | 2020/2020_06/UConn Athletic District/2020-06-25 12.17.49-1.jpg
+uconn-athletic-pipe       | 2020/2020_06/UConn Athletic District/2020-06-25 12.06.21.jpg
+uconn-athletic-dji        | 2020/2020_12/UConn Athletic District/DJI_0006.JPG
+# UConn Innovation Partnership Building, August 2017 aerials
+uconn-ipb-aerial   | 2017/2017_08/UConn Innovative Partnership Building/UIP 08312017 (1).JPG
+uconn-ipb-aerial-2 | 2017/2017_08/UConn Innovative Partnership Building/UIP 08312017 (3).JPG
+# UConn South Campus, 2023-2024 job photos. The three marked "Google Photos" came from Evan's Google Photos export
+# (Google Takeout, Oct 28 2026), not Dropbox; the 2024 ones carry a compass (top left)
+# and a map (bottom left) stamp, hence the top and bottom crops.
+south-campus-excavation | Google Photos 2024/TimePhoto_20240416_093356.jpg | crop-top:15 crop-bottom:23
+south-campus-box        | Google Photos 2024/TimePhoto_20240410_102830.jpg | crop-top:15 crop-bottom:23
+south-campus-structure  | Google Photos 2023/TimePhoto_20231201_134954.jpg | crop-bottom:24
+south-campus-trench| 2024/2024_04/UConn South Campus Infrastructure/TimePhoto_20240409_085751.jpg | crop-bottom:22
+south-campus-pipe  | 2024/2024_03/UConn South Campus Infrastructure/TimePhoto_20240320_114806.jpg | crop-bottom:22
+# Team and shop, May 2024 drone (fleet-aerial: the zoomed-out one, equipment with the crew in the middle)
+fleet-aerial       | 2024/2024_05/Shop/DJI_20240503130313_0001_V.JPG
+# 2026 Safety Day / spring kickoff shoot (crew and camaraderie)
+crew-four          | Edited Videos & Photos/2026 Safety Day/Large/GCI.260430.SpringKickoff.Large-15.jpg
+crew-three         | Edited Videos & Photos/2026 Safety Day/Large/GCI.260430.SpringKickoff.Large-35.jpg
+crew-laugh         | Edited Videos & Photos/2026 Safety Day/Large/GCI.260430.SpringKickoff.Large-22.jpg
+crew-talk          | Edited Videos & Photos/2026 Safety Day/Large/GCI.260430.SpringKickoff.Large-12.jpg
+crew-shop          | Edited Videos & Photos/2026 Safety Day/Large/GCI.260430.SpringKickoff.Large-10.jpg
+crew-lunch         | Edited Videos & Photos/2026 Safety Day/Large/GCI.260430.SpringKickoff.Large-29.jpg
