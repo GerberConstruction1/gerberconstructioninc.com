@@ -536,7 +536,7 @@ def page_home():
       </div>
       {ph("Three crew members in front of a Gerber truck, spring kickoff 2026", slug="crew-three", depth=d, alt="Three Gerber crew members arm in arm in front of a Gerber dump truck")}
     </div>
-    <div class="strip">{ph("Spotting the excavator at Norwalk, November 2024", slug="norwalk-nov-direct", depth=d, pos="38% 50%")}{ph("Laughing in the shop, spring kickoff 2026", slug="crew-laugh", depth=d, pos="0% 50%", alt="A Gerber project manager laughing in the shop")}{ph("On site at Norwalk High School, June 2024", slug="norwalk-crew", depth=d, pos="84% 50%", alt="A Gerber crew member in a Gerber shirt and hard hat at Norwalk High School")}{ph("Operator at Bowers Elementary, April 2023", slug="bowers-operator", depth=d, pos="50% 42%", alt="A Gerber operator in the cab of an excavator at Bowers Elementary")}</div>
+    <div class="strip">{ph("Spotting the excavator at Norwalk, November 2024", slug="norwalk-nov-direct", depth=d, pos="38% 50%")}{ph("In the shop at the spring kickoff, 2026", slug="crew-laugh", depth=d, pos="100% 50%", alt="A Gerber crew member in a Gerber hoodie, smiling in the shop")}{ph("On site at Norwalk High School, June 2024", slug="norwalk-crew", depth=d, pos="84% 50%", alt="A Gerber crew member in a Gerber shirt and hard hat at Norwalk High School")}{ph("Operator at Bowers Elementary, April 2023", slug="bowers-operator", depth=d, pos="50% 42%", alt="A Gerber operator in the cab of an excavator at Bowers Elementary")}</div>
   </div>
 </section>
 
