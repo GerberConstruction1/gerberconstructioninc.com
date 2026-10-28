@@ -552,8 +552,6 @@ def page_home():
       </div>
       <form class="form" id="contact-form" method="POST" action="https://api.web3forms.com/submit" data-fallback="{SITE['email_general']}">
         <input type="hidden" name="access_key" value="{SITE['form_key']}">
-        <input type="hidden" name="subject" value="Website message for Gerber Construction">
-        <input type="hidden" name="from_name" value="gerberconstructioninc.com contact form">
         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="two"><label>Name<input type="text" id="f-name" name="name" autocomplete="name" required></label><label>Company<input type="text" id="f-company" name="company" autocomplete="organization"></label></div>
         <div class="two"><label>Email<input type="email" id="f-email" name="email" autocomplete="email" required></label><label>Phone<input type="tel" id="f-phone" name="phone" autocomplete="tel"></label></div>
