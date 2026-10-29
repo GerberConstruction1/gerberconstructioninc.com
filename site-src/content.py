@@ -157,7 +157,7 @@ PROJECTS = [
         "slug": "osgood-park",
         "title": "Osgood Park",
         "town": "New Britain, Connecticut",
-        "line": "A city park rebuilt with Gerber as general contractor: new building, lit fields and a spray pad.",
+        "line": "A city park rebuilt with Gerber as general contractor: new building, lit fields and a splash pad.",
         "facts": [
             ("Location", "New Britain, CT"),
             ("Owner", "City of New Britain"),
@@ -169,16 +169,16 @@ PROJECTS = [
         "gallery": [("osgood-building", "The new park building, April 2023"), ("osgood-excavator", "Site work at Osgood Park")],
         "paras": [
             "Osgood Park is a neighborhood park in New Britain, and Gerber was the general contractor for its renovation. We took down the old bathroom and concession buildings, handled the abatement that came with them, and built the new multipurpose building in their place.",
-            "Around it, our crews rebuilt the grounds: site utilities, mass and trench rock excavation, new sports lighting on the fields and a spray pad for the summer. It's the kind of job where the earthwork, the utilities and the building all have to come from one team that owns the whole schedule.",
+            "Around it, our crews rebuilt the grounds: site utilities, mass and trench rock excavation, new sports lighting on the fields and a splash pad for the summer. It's the kind of job where the earthwork, the utilities and the building all have to come from one team that owns the whole schedule.",
         ],
         "numbers": [],
-        "scope": ["Demolition and abatement", "New multipurpose building", "Site utilities", "Mass and trench rock excavation", "Sports lighting", "Spray pad", "Site concrete and paving"],
+        "scope": ["Demolition and abatement", "New multipurpose building", "Site utilities", "Mass and trench rock excavation", "Sports lighting", "Splash pad", "Site concrete and paving"],
     },
     {
         "slug": "route-140-charters-brook",
         "title": "Route 140 over Charters Brook",
         "town": "Ellington, Connecticut",
-        "line": "A CTDOT bridge replacement over Charters Brook in our hometown, built inside a cofferdam.",
+        "line": "A CTDOT bridge replacement over Charters Brook in our hometown.",
         "facts": [
             ("Location", "Ellington, CT"),
             ("Owner", "Connecticut Department of Transportation"),
@@ -266,8 +266,8 @@ STORY_SHORT = [
 ]
 
 STORY = [
-    "In 1984, Ron Gerber realized he couldn't milk one more cow on his family's dairy farm in Vernon, Connecticut. Determined to chart a new path, he and a friend pooled their money to buy a 1974 Ford backhoe and set out to find someone in need of excavation work. Ron quickly developed a passion for digging, learning his craft in the backyards of his community. He still recalls with pride the day he moved a three-foot boulder for an elderly neighbor, a small job that was the start of something much bigger.",
-    "With grit, long hours and a focus on doing things the right way, Ron grew Gerber Construction from a two-man operation into a respected heavy civil and utility contractor. What began with backyard projects soon expanded into large-scale site development and utility infrastructure across Connecticut.",
+    "In 1984, Ron Gerber realized he couldn't milk one more cow on his family's dairy farm in Vernon, Connecticut. He and a friend pooled their money to buy a 1974 Ford backhoe and set out to find someone in need of excavation work. He quickly developed a passion for digging, learning his craft in the backyards of his community. He still recalls the day he moved a three-foot boulder for an elderly neighbor, a small job that was the start of something much bigger.",
+    "Steve Gerber joined Ron early on, and together, with grit, long hours and a focus on doing things the right way, they grew Gerber Construction from a two-man operation into a respected heavy civil and utility contractor. What began with backyard projects expanded into large-scale site development and utility infrastructure across Connecticut.",
     "From the beginning, quality and integrity have been our foundation. As projects grew larger, so did our team, and today Gerber Construction stands as one of Connecticut's leading contractors, with our eyes set on even greater opportunities across New England.",
     "We continue to invest in state-of-the-art equipment, the latest technology and, most importantly, our people. At Gerber, we're a family. Every new team member becomes part of our story, and every project is built on the hard work and dedication of the men and women who wear our name with pride.",
 ]
