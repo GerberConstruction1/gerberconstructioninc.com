@@ -486,14 +486,14 @@ def page_home():
   <div class="hero__media">{hero_media(d)}</div>
   <div class="wrap hero__body">
     <h1 class="display">Built from the ground down.</h1>
-    <p class="lede hero__lede">Gerber Construction is a heavy civil and underground utility contractor based in Connecticut. Since 1984 our crews have moved the dirt, laid the pipe and delivered turnkey site packages for schools, campuses, towns and states across New England.</p>
+    <p class="lede hero__lede">Gerber Construction is a heavy civil and underground utility contractor based in Connecticut. Since 1984 our crews have moved dirt, laid pipe and delivered turnkey site packages for schools, campuses, towns and states across New England.</p>
     <div class="cta-row hero__cta"><a class="btn" href="#projects">See the work</a><a class="btn btn--ghost" href="#contact">Request pricing</a></div>
   </div>
 </section>
 
 <section class="band band--paper" id="about" aria-labelledby="h-about">
   <div class="wrap">
-    <div class="section-head section-head--tight"><div class="kicker">About Gerber</div><h2 class="display" id="h-about">One backhoe, 1984.</h2></div>
+    <div class="section-head section-head--tight"><div class="kicker">About Gerber</div><h2 class="display" id="h-about">From milking cows to moving dirt.</h2></div>
     <div class="cols">
       <div class="prose">{story}</div>
       <div style="display:grid;gap:16px">{ph("Four crew members at the spring kickoff, 2026", slug="crew-four", depth=d, light=True, alt="Four Gerber crew members in Gerber hoodies and high-visibility gear, smiling")}{ph("The whole crew in the shop for the spring kickoff, 2026", slug="crew-shop", depth=d, light=True)}</div>
@@ -512,7 +512,7 @@ def page_home():
 
 <section class="band band--paper" id="services" aria-labelledby="h-services">
   <div class="wrap">
-    <div class="section-head"><div class="kicker">Services</div><h2 class="display" id="h-services">Dig the dirt. Lay the pipe. Deliver the site.</h2><p class="lede">Three things, done by our own crews with our own equipment.</p></div>
+    <div class="section-head"><div class="kicker">Services</div><h2 class="display" id="h-services">Dig dirt. Lay pipe. Deliver the site.</h2><p class="lede">Three things, done by our own crews with our own equipment.</p></div>
     <div class="pillars">{pillars}</div>
     <div class="cta-row more"><a class="btn btn--ink" href="#contact">Request pricing</a></div>
   </div>
