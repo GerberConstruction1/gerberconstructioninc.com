@@ -424,7 +424,7 @@ def org_jsonld():
                     "addressRegion": "CT", "postalCode": "06029", "addressCountry": "US"},
         "areaServed": [{"@type": "State", "name": "Connecticut"}, {"@type": "State", "name": "Massachusetts"}],
         "knowsAbout": ["Heavy civil construction", "Underground utilities", "Earthwork", "Site work", "Storm drainage",
-                       "Sanitary sewer", "Water mains", "Electrical ductbank", "Excavation", "Grading", "Paving"],
+                       "Sanitary sewer", "Water mains", "Electrical ductbank", "Excavation", "Grading"],
         "sameAs": [SITE["instagram"], SITE["facebook"], SITE["linkedin"]],
     }
 
@@ -502,7 +502,7 @@ def hero_media(d):
     poster = asset(d, "video/hero-poster.jpg")
     return (f'<div class="hero__fallback">{photo}</div>'
             f'<video class="hero__video" muted loop playsinline preload="none" poster="{poster}" '
-            f'aria-label="Gerber crews moving dirt, setting pipe and paving" data-src-l="{big}" data-src-s="{small}" hidden></video>'
+            f'aria-label="Gerber crews moving dirt and setting pipe" data-src-l="{big}" data-src-s="{small}" hidden></video>'
             '<script>(function(){var v=document.querySelector(".hero__video");if(!v||!v.canPlayType||!v.canPlayType("video/mp4"))return;'
             'if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;'
             'v.addEventListener("playing",function(){v.hidden=false;setTimeout(function(){v.parentNode.classList.add("hero__media--playing");},40);});'
@@ -579,7 +579,7 @@ def page_home():
 
 <section class="band band--paper" id="services" aria-labelledby="h-services">
   <div class="wrap">
-    <div class="section-head"><div class="kicker">Services</div><h2 class="display" id="h-services">Dig dirt. Lay pipe. Deliver the site.</h2><p class="lede">Three things, done by our own crews with our own equipment.</p></div>
+    <div class="section-head"><div class="kicker">Services</div><h2 class="display" id="h-services">Dig dirt. Lay pipe. Deliver the site.</h2><p class="lede">Three things. Our own crews and equipment do the dirt and the pipe.</p></div>
     <div class="pillars">{pillars}</div>
     <div class="cta-row more"><a class="btn btn--ink" href="#contact">Request pricing</a></div>
   </div>
@@ -709,7 +709,7 @@ def page_service(sv):
     <figure class="figure">{ph(cap, 'ph--wide', slug=pslug, depth=d, eager=True, alt=cap)}<figcaption>{esc(cap)}</figcaption></figure>
     <div class="cols" style="margin-top:clamp(20px,3vw,32px)">
       <div class="prose">{paras}</div>
-      <div class="aside"><h4>What we self-perform</h4><ul class="ticks">{items}</ul></div>
+      <div class="aside"><h4>{esc(sv.get("aside_title", "What we self-perform"))}</h4><ul class="ticks">{items}</ul></div>
     </div>
     <div class="cta-row more"><a class="btn btn--ink" href="{home_link(d, '#contact')}">Request pricing</a></div>
   </div>
