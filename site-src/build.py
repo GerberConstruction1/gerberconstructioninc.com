@@ -5,10 +5,23 @@ import html
 import os
 import shutil
 
-from content import PILLARS, PROJECTS, SITE, STORY, VALUES
+from content import PILLARS, PROJECTS, SERVICES, SITE, STORY, VALUES
+import json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.normpath(os.path.join(ROOT, "..", "dist"))
+BASE = "https://www.gerberconstructioninc.com"
+try:
+    import PIL  # noqa: F401
+    HAVE_PIL = True
+except ImportError:
+    HAVE_PIL = False
+# Search Console HTML-tag verification for the URL-prefix property (leave empty if verified by DNS instead).
+GOOGLE_VERIFY = "vzRTv1Tp06VH-u1WSMuMH3w7qGj0JQQhEKewuVMSvKQ"
+GOOGLE_VERIFY_FILE = "google33a93ba306aff332.html"  # Search Console file check; keep it published
+# Old Squarespace addresses that may still be in Google or in bookmarks -> where they live now.
+OLD_URLS = {"services": "#services", "about": "#about", "contact": "#contact", "projects": "#projects",
+            "careers": SITE["careers"], "our-work": "#projects", "home": ""}
 
 FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
          'family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800'
@@ -71,6 +84,7 @@ h4{font-family:var(--font-body);font-weight:600;font-size:18px}
 .btn--ghost{background:transparent;color:var(--paper);border-color:var(--paper)}
 .btn--ghost:hover{background:var(--paper);color:var(--green);border-color:var(--paper)}
 .btn--ink{background:transparent;color:var(--green);border-color:var(--green)}
+.more-link{margin-top:14px;font-weight:600}.more-link a{color:var(--green);text-decoration:none}.more-link a:hover{text-decoration:underline}
 .btn--ink:hover{background:var(--green);color:var(--paper);border-color:var(--green)}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px}
 
@@ -124,6 +138,7 @@ h4{font-family:var(--font-body);font-weight:600;font-size:18px}
 .ph--light{background:var(--paper-2);background-image:repeating-linear-gradient(135deg,rgba(11,66,46,.22) 0 1px,transparent 1px 12px);border-color:var(--line)}
 .ph--light>span{color:var(--muted)}
 .ph--img{background:var(--green-deep);background-image:none;border:0}
+.ph--img picture{display:contents}
 .ph--img img{width:100%;height:100%;object-fit:cover;display:block}
 .strip{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:clamp(20px,3vw,32px)}
 @media (min-width:700px){.strip{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -207,7 +222,8 @@ h4{font-family:var(--font-body);font-weight:600;font-size:18px}
 .foot__tag{font-size:clamp(32px,5vw,64px);max-width:12em;margin-bottom:clamp(32px,5vw,56px)}
 .foot__grid{display:grid;gap:28px;grid-template-columns:1fr;border-top:1px solid var(--line-on-green);padding-top:32px}
 @media (min-width:640px){.foot__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (min-width:1000px){.foot__grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:1000px){.foot__grid{grid-template-columns:repeat(5,minmax(0,auto));justify-content:space-between}}
+.foot__grid a{overflow-wrap:anywhere}
 .foot__grid h4{color:var(--gold);margin-bottom:8px}
 .foot__grid a{text-decoration:none}
 .foot__grid a:hover{text-decoration:underline;text-underline-offset:4px}
@@ -350,6 +366,7 @@ def footer(depth):
       <div><h4>Office</h4><p>{SITE['address1']}<br>{SITE['address2']}</p><p><a href="{SITE['phone_href']}">{SITE['phone']}</a></p><p><a href="{SITE['maps']}" target="_blank" rel="noopener">Directions</a></p></div>
       <div><h4>Pricing and bids</h4><p><a href="mailto:{SITE['email_pricing']}">{SITE['email_pricing']}</a></p><p class="muted">Send plans, specs and bid invitations here.</p></div>
       <div><h4>General</h4><p><a href="mailto:{SITE['email_general']}">{SITE['email_general']}</a></p><p><a href="{SITE['careers']}" target="_blank" rel="noopener">Careers at Gerber</a></p></div>
+      <div><h4>Services</h4>{"".join(f'<p><a href="{rel(depth, "services/" + sv["slug"] + ".html")}">{esc(sv["kicker"])}</a></p>' for sv in SERVICES)}</div>
       <div><h4>Follow</h4><p><a href="{SITE['instagram']}" target="_blank" rel="noopener">Instagram</a></p><p><a href="{SITE['facebook']}" target="_blank" rel="noopener">Facebook</a></p><p><a href="{SITE['linkedin']}" target="_blank" rel="noopener">LinkedIn</a></p></div>
     </div>
     <div class="foot__bottom"><span>&copy; {SITE['year']} Gerber Construction Inc.</span><span>Heavy civil and utility contractor, Ellington, Connecticut</span><span>Prequalified with CTDOT, CT DAS and MassDOT</span></div>
@@ -358,18 +375,63 @@ def footer(depth):
 """
 
 
-def head(title, desc, depth, main=False):
-    parts = []
-    if True:
-        parts.append('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">')
+def head(title, desc, depth, main=False, path="", jsonld=None):
+    """path: the page's address under the site root, e.g. "" for home, "projects/osgood-park.html"."""
+    url = f"{BASE}/{path}"
+    parts = ['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">']
     parts.append(f"<title>{esc(title)}</title>")
     parts.append('<meta name="claude:viewport-fit-sides" content="cover">')
     parts.append(f'<meta name="description" content="{esc(desc)}">')
+    parts.append(f'<link rel="canonical" href="{url}">')
+    if GOOGLE_VERIFY:
+        parts.append(f'<meta name="google-site-verification" content="{GOOGLE_VERIFY}">')
+    og_img = f"{BASE}/assets/og-image.jpg"
+    parts.append(f'<meta property="og:type" content="website"><meta property="og:site_name" content="Gerber Construction Inc.">'
+                 f'<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">'
+                 f'<meta property="og:url" content="{url}"><meta property="og:image" content="{og_img}">'
+                 f'<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
+                 f'<meta name="twitter:card" content="summary_large_image">')
+    parts.append(f'<link rel="icon" type="image/png" sizes="32x32" href="{rel(depth, "assets/favicon-32.png")}">'
+                 f'<link rel="icon" type="image/png" sizes="512x512" href="{rel(depth, "assets/favicon-512.png")}">'
+                 f'<link rel="apple-touch-icon" href="{rel(depth, "assets/apple-touch-icon.png")}">')
+    if jsonld:
+        parts.append('<script type="application/ld+json">' + json.dumps(jsonld, ensure_ascii=False) + "</script>")
     parts.append(FONTS)
     parts.append(f"<style>{CSS}</style>")
     if not main:
         parts.append("</head><body>")
     return "\n".join(parts)
+
+
+ORG_ID = BASE + "/#organization"
+
+
+def org_jsonld():
+    return {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": ORG_ID,
+        "name": "Gerber Construction Inc.",
+        "description": "Heavy civil and underground utility contractor: earthwork, underground utilities and turnkey site packages for schools, campuses, towns and states across New England.",
+        "url": BASE + "/",
+        "logo": BASE + "/assets/logo-green.png",
+        "image": BASE + "/assets/og-image.jpg",
+        "telephone": "+1-860-875-6684",
+        "email": SITE["email_general"],
+        "foundingDate": "1984",
+        "founder": {"@type": "Person", "name": "Ron Gerber"},
+        "address": {"@type": "PostalAddress", "streetAddress": SITE["address1"], "addressLocality": "Ellington",
+                    "addressRegion": "CT", "postalCode": "06029", "addressCountry": "US"},
+        "areaServed": [{"@type": "State", "name": "Connecticut"}, {"@type": "State", "name": "Massachusetts"}],
+        "knowsAbout": ["Heavy civil construction", "Underground utilities", "Earthwork", "Site work", "Storm drainage",
+                       "Sanitary sewer", "Water mains", "Electrical ductbank", "Excavation", "Grading", "Paving"],
+        "sameAs": [SITE["instagram"], SITE["facebook"], SITE["linkedin"]],
+    }
+
+
+def crumbs(items):
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList",
+            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(items)]}
 
 
 def tail(main=False):
@@ -410,8 +472,13 @@ def ph(label, cls="", light=False, slug=None, depth=0, alt=None, eager=False, st
         load = 'loading="eager" fetchpriority="high"' if eager else 'loading="lazy" decoding="async"'
         box = f' style="{style}"' if style else ""
         img = f' style="object-position:{pos}"' if pos else ""
-        return (f'<div class="{c} ph--img"{box}><img src="{src}" srcset="{src} 1200w, {big} 2400w" '
-                f'sizes="(min-width: 1200px) 1180px, 100vw" alt="{esc(alt or label)}"{img} {load}></div>')
+        sizes = 'sizes="(min-width: 1200px) 1180px, 100vw"'
+        webp = ""
+        if HAVE_PIL:
+            w1, w2 = asset(depth, f"img/{slug}-1200.jpg").replace(".jpg", ".webp"), asset(depth, f"img/{slug}-2400.jpg").replace(".jpg", ".webp")
+            webp = f'<source type="image/webp" srcset="{w1} 1200w, {w2} 2400w" {sizes}>'
+        return (f'<div class="{c} ph--img"{box}><picture>{webp}<img src="{src}" srcset="{src} 1200w, {big} 2400w" '
+                f'{sizes} alt="{esc(alt or label)}"{img} {load}></picture></div>')
     c += " ph--light" if light else ""
     return f'<div class="{c}" role="img" aria-label="Photo: {esc(label)}"><span>Photo: {esc(label)}</span></div>'
 
@@ -471,7 +538,7 @@ def page_home():
     d = 0
     pillars = "".join(
         f"<div class=\"pillar\">{ph(pl['photo'][1], slug=pillar_slug(pl), depth=d, alt=pl['photo'][1])}<h3>{esc(pl['title'])}</h3><p>{esc(pl['body'])}</p><ul class=\"ticks\">"
-        + "".join(f"<li>{esc(i)}</li>" for i in pl["items"]) + "</ul></div>"
+        + "".join(f"<li>{esc(i)}</li>" for i in pl["items"]) + "</ul>" + svc_link(pl["title"], d) + "</div>"
         for pl in PILLARS)
     lead = PROJECTS[0]
     grid = "".join(proj_card(p, d) for p in PROJECTS[1:])
@@ -565,7 +632,7 @@ def page_home():
 </main>
 {footer(d)}
 """
-    return head("Gerber Construction | Heavy civil and underground utility contractor, Connecticut", "Heavy civil, underground utilities and turnkey site packages for schools, campuses, towns and states across New England since 1984.", d, main=True) + body + tail(main=True)
+    return head("Gerber Construction | Heavy Civil & Utility Contractor, CT", "Heavy civil, underground utilities and turnkey site packages for schools, campuses, towns and states across New England since 1984.", d, main=True, path="", jsonld=org_jsonld()) + body + tail(main=True)
 
 
 def page_project(i):
@@ -612,7 +679,109 @@ def page_project(i):
 </main>
 {footer(d)}
 """
-    return head(f"{p['title']}, Gerber Construction", p["line"], d) + body + tail()
+    path = f"projects/{p['slug']}.html"
+    return head(f"{p['title']} | Gerber Construction", p["line"], d, path=path,
+                jsonld=crumbs([("Home", BASE + "/"), ("Projects", BASE + "/#projects"), (p["title"], f"{BASE}/{path}")])) + body + tail()
+
+
+def svc_link(pillar_title, depth):
+    sv = next((x for x in SERVICES if x["pillar"] == pillar_title), None)
+    if not sv:
+        return ""
+    return f'<p class="more-link"><a href="{rel(depth, "services/" + sv["slug"] + ".html")}">More on {esc(sv["kicker"].lower())} &rarr;</a></p>'
+
+
+def page_service(sv):
+    d = 1
+    pl = next(x for x in PILLARS if x["title"] == sv["pillar"])
+    paras = "".join(f"<p>{esc(x)}</p>" for x in sv["paras"])
+    items = "".join(f"<li>{esc(i)}</li>" for i in pl["items"])
+    projs = [p for slug in sv["projects"] for p in PROJECTS if p["slug"] == slug]
+    grid = "".join(proj_card(p, d) for p in projs)
+    others = "".join(f'<a class="btn" href="{x["slug"]}.html">{esc(x["kicker"])}</a> ' for x in SERVICES if x is not sv)
+    body = f"""
+{nav(d)}
+<main id="main">
+<section class="page-hero"><div class="wrap"><div class="kicker">{esc(sv['kicker'])}</div><h1 class="display">{esc(sv['h1'])}</h1><p class="lede">{esc(pl['body'])}</p></div></section>
+<section class="band band--paper">
+  <div class="wrap">
+    <figure class="figure">{ph(pl['photo'][1], 'ph--wide', slug=pillar_slug(pl), depth=d, eager=True, alt=pl['photo'][1])}<figcaption>{esc(pl['photo'][1])}</figcaption></figure>
+    <div class="cols" style="margin-top:clamp(20px,3vw,32px)">
+      <div class="prose">{paras}</div>
+      <div class="aside"><h4>What we self-perform</h4><ul class="ticks">{items}</ul></div>
+    </div>
+    <div class="cta-row more"><a class="btn btn--ink" href="{home_link(d, '#contact')}">Request pricing</a></div>
+  </div>
+</section>
+<section class="band band--green" aria-labelledby="h-svc-work">
+  <div class="wrap">
+    <div class="section-head"><div class="kicker">Projects</div><h2 class="display" id="h-svc-work">Where we've done it</h2></div>
+    <div class="proj-grid">{grid}</div>
+    <div class="cta-row more">{others}</div>
+  </div>
+</section>
+</main>
+{footer(d)}
+"""
+    path = f"services/{sv['slug']}.html"
+    ld = [crumbs([("Home", BASE + "/"), ("Services", BASE + "/#services"), (sv["kicker"], f"{BASE}/{path}")]),
+          {"@context": "https://schema.org", "@type": "Service", "name": sv["kicker"], "serviceType": sv["kicker"],
+           "description": sv["desc"], "url": f"{BASE}/{path}", "provider": {"@id": ORG_ID},
+           "areaServed": [{"@type": "State", "name": "Connecticut"}, {"@type": "State", "name": "Massachusetts"}]}]
+    return head(sv["title"], sv["desc"], d, path=path, jsonld=ld) + body + tail()
+
+
+def redirect_page(target):
+    t = esc(target)
+    return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Gerber Construction</title>'
+            f'<link rel="canonical" href="{t}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url={t}">'
+            f'<script>location.replace({json.dumps(target)});</script></head>'
+            f'<body><p>This page has moved: <a href="{t}">{t}</a></p></body></html>')
+
+
+
+def page_404():
+    body = f"""
+{nav(0)}
+<main id="main"><section class="page-hero"><div class="wrap"><div class="kicker">Page not found</div><h1 class="display">That page moved.</h1>
+<p class="lede"><a href="{BASE}/">Go to the home page</a>, see <a href="{BASE}/#projects">our projects</a>, or <a href="{BASE}/#contact">get in touch</a>.</p></div></section></main>
+"""
+    return head("Page not found | Gerber Construction", "Page not found.", 0, path="404.html").replace(
+        '<link rel="canonical"', '<meta name="robots" content="noindex"><link rel="canonical"') + body.replace('src="assets/', f'src="{BASE}/assets/') + tail()
+
+
+def make_icons_and_webp():
+    """Favicons and the link-preview image go into dist/assets; WebP copies of every photo go into dist/assets/img.
+    Needs Pillow (the publish workflow installs it). Without it the site still builds, just without these."""
+    try:
+        from PIL import Image
+    except ImportError:
+        print("Pillow not installed: skipping favicons, preview image and WebP")
+        return
+    out = os.path.join(DIST, "assets")
+    logo = Image.open(os.path.join(ROOT, "logo-green.png")).convert("RGBA")
+    em = logo.crop((0, 0, 215, logo.height))
+    em = em.crop(em.getbbox())
+    side = max(em.size)
+    sq = Image.new("RGBA", (side, side), (0, 0, 0, 0))
+    sq.paste(em, ((side - em.size[0]) // 2, (side - em.size[1]) // 2))
+    sq.resize((32, 32), Image.LANCZOS).save(os.path.join(out, "favicon-32.png"))
+    sq.resize((512, 512), Image.LANCZOS).save(os.path.join(out, "favicon-512.png"))
+    touch = Image.new("RGBA", (180, 180), "white")
+    touch.alpha_composite(sq.resize((160, 160), Image.LANCZOS), (10, 10))
+    touch.convert("RGB").save(os.path.join(out, "apple-touch-icon.png"))
+    src = os.path.join(IMG_DIR, "norwalk-nov-aerial-2400.jpg")
+    if os.path.exists(src):
+        o = Image.open(src).convert("RGB")
+        w, h = o.size
+        ch = int(w * 630 / 1200)
+        if ch <= h:
+            o = o.crop((0, (h - ch) // 2, w, (h - ch) // 2 + ch))
+        o.resize((1200, 630), Image.LANCZOS).save(os.path.join(out, "og-image.jpg"), quality=82)
+    for name in os.listdir(IMG_DIR):
+        if name.endswith(("-1200.jpg", "-2400.jpg")):
+            Image.open(os.path.join(IMG_DIR, name)).save(
+                os.path.join(out, "img", name[:-4] + ".webp"), "WEBP", quality=78, method=4)
 
 
 def build():
@@ -629,9 +798,30 @@ def build():
         shutil.copytree(IMG_DIR, os.path.join(DIST, "assets", "img"), dirs_exist_ok=True)
     if os.path.isdir(VIDEO_DIR):
         shutil.copytree(VIDEO_DIR, os.path.join(DIST, "assets", "video"), dirs_exist_ok=True)
+    make_icons_and_webp()
+    os.makedirs(os.path.join(DIST, "services"), exist_ok=True)
+    for sv in SERVICES:
+        pages[f"services/{sv['slug']}.html"] = page_service(sv)
+    sitemap_paths = [""] + [p for p in pages if p != "index.html"]
+    for old, target in OLD_URLS.items():
+        url = target if target.startswith("http") else f"{BASE}/{target}"
+        pages[f"{old}/index.html"] = redirect_page(url)
+        pages[f"{old}.html"] = redirect_page(url)
     for path, content in pages.items():
+        os.makedirs(os.path.dirname(os.path.join(DIST, path)), exist_ok=True)
         with open(os.path.join(DIST, path), "w", encoding="utf-8") as f:
             f.write(content)
+    with open(os.path.join(DIST, "robots.txt"), "w") as f:
+        f.write(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n")
+    with open(os.path.join(DIST, "sitemap.xml"), "w") as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+        for p in sitemap_paths:
+            f.write(f"  <url><loc>{BASE}/{p}</loc></url>\n")
+        f.write("</urlset>\n")
+    with open(os.path.join(DIST, GOOGLE_VERIFY_FILE), "w") as f:
+        f.write(f"google-site-verification: {GOOGLE_VERIFY_FILE}")
+    with open(os.path.join(DIST, "404.html"), "w", encoding="utf-8") as f:
+        f.write(page_404())
     print(f"built {len(pages)} pages into {DIST}")
 
 
