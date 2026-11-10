@@ -273,7 +273,7 @@ STORY = [
 ]
 
 # One page per service, for search. Each pulls its list from the matching PILLAR and links the projects that show it.
-# DRAFT copy for Evan's review (Nov 2026).
+# DRAFT copy for Evan's review (Nov 2026). Optional "photo": (slug, caption) overrides the pillar photo.
 SERVICES = [
     {
         "slug": "underground-utilities",
@@ -285,9 +285,10 @@ SERVICES = [
         "paras": [
             "Gerber Construction installs underground utilities across Connecticut and into Massachusetts: storm drainage, sanitary sewer, water mains and services, and electrical ductbank, along with the precast structures and manholes that tie them together.",
             "Our own crews and equipment do the work. We set pipe to line and grade, build deep structures in tight corridors, keep live systems running while we work around them, and get everything tested and inspected before it's buried.",
-            "Most of our utility work is for public owners and the construction managers building for them: school districts, universities, cities and towns, and CTDOT. At Norwalk High School alone our crews put in more than 21,000 linear feet of storm, sanitary and water pipe.",
+            "Most of our utility work is for public owners and the construction managers building for them: school districts, universities, cities and towns, and CTDOT. On UConn's South Campus we rerouted the steam, storm, sanitary and water lines ahead of new residence halls, on an open campus and around the academic calendar.",
         ],
-        "projects": ["norwalk-high-school", "uconn-south-campus-infrastructure", "uconn-athletic-district", "bowers-elementary-school"],
+        "photo": ("uconn-athletic-pipe-crew", "Setting reinforced concrete storm pipe, UConn Athletic District, June 2020"),
+        "projects": ["uconn-south-campus-infrastructure", "uconn-athletic-district", "bowers-elementary-school", "uconn-innovation-partnership-building"],
     },
     {
         "slug": "earthwork",
@@ -301,7 +302,7 @@ SERVICES = [
             "We crush and screen on site to turn what's in the ground into usable material, stabilize unsuitable soils, and handle and haul contaminated soil when a site calls for it.",
             "On Norwalk High School our crews excavated, graded and balanced more than 100,000 cubic yards to build the pads, parking and athletic fields on a tight urban site with a lot of other trades working at once.",
         ],
-        "projects": ["norwalk-high-school", "uconn-innovation-partnership-building", "bowers-elementary-school", "osgood-park"],
+        "projects": ["norwalk-high-school", "uconn-innovation-partnership-building", "uconn-athletic-district", "osgood-park"],
     },
     {
         "slug": "site-work",
@@ -315,6 +316,7 @@ SERVICES = [
             "We carry site packages for construction managers and general contractors on schools and campuses, and turnkey site packages for private owners. We also act as prime contractor on our own heavy civil jobs, like CTDOT's Route 140 bridge over Charters Brook here in Ellington.",
             "Our crews self-perform the core of the work, so the schedule is in our hands, not spread across a half dozen subs.",
         ],
-        "projects": ["norwalk-high-school", "bowers-elementary-school", "route-140-charters-brook", "osgood-park"],
+        "photo": ("osgood-excavator", "Site work at Osgood Park, New Britain"),
+        "projects": ["bowers-elementary-school", "osgood-park", "route-140-charters-brook", "uconn-south-campus-infrastructure"],
     },
 ]
