@@ -14,7 +14,7 @@ The source for gerberconstructioninc.com. A static site: no framework. GitHub Pa
 
 To add a photo: put the original in a folder named `<slug>.jpg`, add a line to `site-src/photos.txt` (optionally `| crop-bottom:22` to trim a date stamp), run `python3 site-src/make-web-images.py <folder>` (needs Pillow), commit the two files it writes to `site-src/img/`.
 
-To change anything: edit `site-src/`, commit, push to `main`. GitHub rebuilds and republishes in about a minute. To preview locally, run `python3 site-src/build.py` from the repo root and open `dist/index.html`. The easiest way to do all of that is to ask Claude in the AI GCI project.
+To change anything: edit `site-src/`, commit, push to `main`. GitHub rebuilds and republishes in about a minute. To preview locally, run `python3 site-src/build.py` from the repo root and open `dist/index.html`. The easiest way to do all of that is to ask Claude in the Office IT project.
 
 ## Pages
 
