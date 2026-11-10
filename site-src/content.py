@@ -76,7 +76,7 @@ PILLARS = [
     {
         "title": "Turnkey site packages",
         "photo": ("norwalk-nov-aerial", "Norwalk High School from the air, November 2024: grading, utilities, structures and roads, all one contract"),
-        "body": "One contract from clearing to curb. Erosion control, earthwork, utilities, retaining walls, site concrete and paving, run by one team on one schedule, with one responsible party for the whole site.",
+        "body": "One contract from clearing to curb. Our crews do the earthwork and utilities, and we run the subs for concrete and paving, on one schedule with one responsible party for the whole site.",
         "items": [
             "Erosion and sediment control",
             "Retaining walls",
@@ -126,7 +126,7 @@ PROJECTS = [
         "gallery": [("norwalk-nov-pipe", "Setting large-diameter storm pipe, November 2024"), ("norwalk-nov-crew", "Crew setting structures, November 2024"), ("norwalk-topdown", "Setting a structure, straight down from the drone, June 2024")],
         "paras": [
             "Norwalk's new high school campus sits on a tight urban site with a lot of contractors working at once. Gerber's crews excavated, graded and balanced more than 100,000 cubic yards of material to build the building pads, the parking lots and the athletic fields.",
-            "Below grade, we installed more than 21,000 linear feet of storm, sanitary and water pipe, including deep storm drainage structures and extensive underdrain systems. Above it, we built the retaining walls, curbing, sidewalks and asphalt paving for both the main campus and the athletic complex.",
+            "Below grade, we installed more than 21,000 linear feet of storm, sanitary and water pipe, including deep storm drainage structures and extensive underdrain systems. Above it, our contract carried the retaining walls, curbing, sidewalks and asphalt paving for both the main campus and the athletic complex.",
             "The job ran on a phased schedule that had to hold for everyone else on site. We delivered a fully prepared site, ready for vertical construction, on time and within budget.",
         ],
         "numbers": [("100,000+", "cubic yards excavated, graded and balanced"), ("21,000+", "linear feet of storm, sanitary and water pipe")],
@@ -148,7 +148,7 @@ PROJECTS = [
         "gallery": [("bowers-trench", "Storm pipe going in, April 2023"), ("bowers-boom", "A Gerber excavator at Bowers"), ("bowers-loading", "Loading out")],
         "paras": [
             "Manchester replaced Bowers Elementary with a new school, and Gerber delivered the site package underneath it: mass excavation and grading for the building and its grounds, then the storm, sanitary and water utilities that serve them.",
-            "Stormwater on a school campus has nowhere to go but down, so the site carries a subsurface storage system beneath it. Our crews installed it along with the drainage that feeds it, then finished the site with curbing, sidewalks and paving.",
+            "Stormwater on a school campus has nowhere to go but down, so the site carries a subsurface storage system beneath it. Our crews installed it along with the drainage that feeds it, and our site package carried the curbing, sidewalks and paving that finished the site.",
         ],
         "numbers": [],
         "scope": ["Mass excavation and grading", "Storm, sanitary and water utilities", "Subsurface stormwater storage", "Site concrete, curbing and sidewalks", "Paving"],
@@ -190,7 +190,7 @@ PROJECTS = [
         "gallery": [("route140-sheeting", "Sheeting and excavation, July 2021"), ("route140-pour", "Concrete, August 2021")],
         "paras": [
             "Bridge No. 02668 carries Route 140 over Charters Brook in Ellington, a few minutes from our shop. For CTDOT, Gerber replaced the structure as prime contractor.",
-            "We installed a cofferdam and handled the brook through the work, made the mass cut and set the sheeting, placed the new precast structure and the cast-in-place concrete around it, then rebuilt and paved the roadway over the top. State bridge work on a live road, with the water running the whole time.",
+            "We installed a cofferdam and handled the brook through the work, made the mass cut, set the sheeting and placed the new precast structure. As prime we also carried the cast-in-place concrete and the roadway rebuild and paving over the top. State bridge work on a live road, with the water running the whole time.",
         ],
         "numbers": [],
         "scope": ["Cofferdam and water handling", "Mass excavation and sheeting", "Precast structure", "Cast-in-place concrete", "Roadway reconstruction and paving"],
@@ -314,9 +314,10 @@ SERVICES = [
         "paras": [
             "A turnkey site package puts the whole site under one contract: erosion control, clearing, earthwork, utilities, retaining walls, site concrete, curbing, paving and restoration. One team, one schedule and one responsible party.",
             "We carry site packages for construction managers and general contractors on schools and campuses, and turnkey site packages for private owners. We also act as prime contractor on our own heavy civil jobs, like CTDOT's Route 140 bridge over Charters Brook here in Ellington.",
-            "Our crews self-perform the core of the work, so the schedule is in our hands, not spread across a half dozen subs.",
+            "Our crews self-perform the earthwork and utilities, the core of every site, so the schedule stays in our hands. Concrete and paving go to subs we know, working to our schedule.",
         ],
         "photo": ("osgood-excavator", "Site work at Osgood Park, New Britain"),
+        "aside_title": "What the package covers",
         "projects": ["bowers-elementary-school", "osgood-park", "route-140-charters-brook", "uconn-south-campus-infrastructure"],
     },
 ]
