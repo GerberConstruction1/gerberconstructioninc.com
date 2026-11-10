@@ -699,13 +699,14 @@ def page_service(sv):
     projs = [p for slug in sv["projects"] for p in PROJECTS if p["slug"] == slug]
     grid = "".join(proj_card(p, d) for p in projs)
     others = "".join(f'<a class="btn" href="{x["slug"]}.html">{esc(x["kicker"])}</a> ' for x in SERVICES if x is not sv)
+    pslug, cap = sv["photo"] if sv.get("photo") and has_img(sv["photo"][0]) else (pillar_slug(pl), pl["photo"][1])
     body = f"""
 {nav(d)}
 <main id="main">
 <section class="page-hero"><div class="wrap"><div class="kicker">{esc(sv['kicker'])}</div><h1 class="display">{esc(sv['h1'])}</h1><p class="lede">{esc(pl['body'])}</p></div></section>
 <section class="band band--paper">
   <div class="wrap">
-    <figure class="figure">{ph(pl['photo'][1], 'ph--wide', slug=pillar_slug(pl), depth=d, eager=True, alt=pl['photo'][1])}<figcaption>{esc(pl['photo'][1])}</figcaption></figure>
+    <figure class="figure">{ph(cap, 'ph--wide', slug=pslug, depth=d, eager=True, alt=cap)}<figcaption>{esc(cap)}</figcaption></figure>
     <div class="cols" style="margin-top:clamp(20px,3vw,32px)">
       <div class="prose">{paras}</div>
       <div class="aside"><h4>What we self-perform</h4><ul class="ticks">{items}</ul></div>
