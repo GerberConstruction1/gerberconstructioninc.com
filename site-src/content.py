@@ -271,3 +271,50 @@ STORY = [
     "From the beginning, quality and integrity have been our foundation. As projects grew larger, so did our team, and today Gerber Construction stands as one of Connecticut's leading contractors, with our eyes set on even greater opportunities across New England.",
     "We continue to invest in state-of-the-art equipment, the latest technology and, most importantly, our people. At Gerber, we're a family. Every new team member becomes part of our story, and every project is built on the hard work and dedication of the men and women who wear our name with pride.",
 ]
+
+# One page per service, for search. Each pulls its list from the matching PILLAR and links the projects that show it.
+# DRAFT copy for Evan's review (Nov 2026).
+SERVICES = [
+    {
+        "slug": "underground-utilities",
+        "pillar": "Underground utilities",
+        "title": "Underground utility contractor in Connecticut",
+        "kicker": "Underground utilities",
+        "h1": "Underground utilities, set to line and grade.",
+        "desc": "Storm drainage, sanitary sewer, water mains and electrical ductbank for schools, campuses, towns and the state. Gerber Construction, Ellington, CT.",
+        "paras": [
+            "Gerber Construction installs underground utilities across Connecticut and into Massachusetts: storm drainage, sanitary sewer, water mains and services, and electrical ductbank, along with the precast structures and manholes that tie them together.",
+            "Our own crews and equipment do the work. We set pipe to line and grade, build deep structures in tight corridors, keep live systems running while we work around them, and get everything tested and inspected before it's buried.",
+            "Most of our utility work is for public owners and the construction managers building for them: school districts, universities, cities and towns, and CTDOT. At Norwalk High School alone our crews put in more than 21,000 linear feet of storm, sanitary and water pipe.",
+        ],
+        "projects": ["norwalk-high-school", "uconn-south-campus-infrastructure", "uconn-athletic-district", "bowers-elementary-school"],
+    },
+    {
+        "slug": "earthwork",
+        "pillar": "Earthwork",
+        "title": "Earthwork and excavation contractor in Connecticut",
+        "kicker": "Earthwork",
+        "h1": "Earthwork. We move the dirt ourselves.",
+        "desc": "Mass excavation, grading, GPS machine control, crushing and screening, and soil stabilization for public and private sites. Gerber Construction, Ellington, CT.",
+        "paras": [
+            "Gerber started in 1984 moving dirt, and it's still the core of what we do. Mass excavation, cut-and-fill balance, rock, and GPS-controlled finish grading, all with our own fleet and our own operators.",
+            "We crush and screen on site to turn what's in the ground into usable material, stabilize unsuitable soils, and handle and haul contaminated soil when a site calls for it.",
+            "On Norwalk High School our crews excavated, graded and balanced more than 100,000 cubic yards to build the pads, parking and athletic fields on a tight urban site with a lot of other trades working at once.",
+        ],
+        "projects": ["norwalk-high-school", "uconn-innovation-partnership-building", "bowers-elementary-school", "osgood-park"],
+    },
+    {
+        "slug": "site-work",
+        "pillar": "Turnkey site packages",
+        "title": "Site work contractor in Connecticut | Turnkey site packages",
+        "kicker": "Site work",
+        "h1": "Turnkey site packages, from clearing to curb.",
+        "desc": "One contract for the whole site: erosion control, earthwork, utilities, retaining walls, site concrete and paving. Gerber Construction, Ellington, CT.",
+        "paras": [
+            "A turnkey site package puts the whole site under one contract: erosion control, clearing, earthwork, utilities, retaining walls, site concrete, curbing, paving and restoration. One team, one schedule and one responsible party.",
+            "We carry site packages for construction managers and general contractors on schools and campuses, and turnkey site packages for private owners. We also act as prime contractor on our own heavy civil jobs, like CTDOT's Route 140 bridge over Charters Brook here in Ellington.",
+            "Our crews self-perform the core of the work, so the schedule is in our hands, not spread across a half dozen subs.",
+        ],
+        "projects": ["norwalk-high-school", "bowers-elementary-school", "route-140-charters-brook", "osgood-park"],
+    },
+]
