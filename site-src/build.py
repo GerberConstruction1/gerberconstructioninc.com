@@ -377,7 +377,7 @@ def footer(depth):
 """
 
 
-def head(title, desc, depth, main=False, path="", jsonld=None):
+def head(title, desc, depth, main=False, path="", jsonld=None, jsonld_extra=()):
     """path: the page's address under the site root, e.g. "" for home, "projects/osgood-park.html"."""
     url = f"{BASE}/{path}"
     parts = ['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">']
@@ -398,6 +398,8 @@ def head(title, desc, depth, main=False, path="", jsonld=None):
                  f'<link rel="apple-touch-icon" href="{rel(depth, "assets/apple-touch-icon.png")}">')
     if jsonld:
         parts.append('<script type="application/ld+json">' + json.dumps(jsonld, ensure_ascii=False) + "</script>")
+    for extra in jsonld_extra:  # each in its own tag (Organization on the home page)
+        parts.append('<script type="application/ld+json">' + json.dumps(extra, ensure_ascii=False) + "</script>")
     parts.append(FONTS)
     parts.append(f"<style>{CSS}</style>")
     if not main:
@@ -412,7 +414,8 @@ def org_jsonld():
     return {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "@id": ORG_ID,
+        "@id": BASE + "/#localbusiness",
+        "parentOrganization": {"@id": ORG_ID},
         "name": "Gerber Construction Inc.",
         "description": "Heavy civil and underground utility contractor: earthwork, underground utilities and turnkey site packages for schools, campuses, towns and states across New England.",
         "url": BASE + "/",
@@ -429,6 +432,48 @@ def org_jsonld():
                        "Sanitary sewer", "Water mains", "Electrical ductbank", "Excavation", "Grading"],
         "sameAs": [SITE["instagram"], SITE["facebook"], SITE["linkedin"]],
     }
+
+
+# Organization entity (MARKETING handoff "Organization Schema + llms.txt", Evan approved Nov 11). Home page only.
+def organization_jsonld():
+    svc = lambda n, slug: {"@type": "Offer", "itemOffered": {"@type": "Service", "name": n, "url": f"{BASE}/services/{slug}.html"}}
+    return {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": ORG_ID,
+        "name": "Gerber Construction Inc.",
+        "legalName": "Gerber Construction Inc.",
+        "url": BASE + "/",
+        "logo": BASE + "/assets/logo-green.png",
+        "foundingDate": "1984",
+        "description": "Heavy civil sitework contractor (site development, earthwork and underground utilities) for public and private owners across New England since 1984.",
+        "disambiguatingDescription": "Heavy civil sitework and underground utility contractor based in Ellington, Connecticut. Not a general contractor or residential builder. Not affiliated with Gerber Construction of Utah.",
+        "address": {"@type": "PostalAddress", "streetAddress": "1 Nutmeg Drive", "addressLocality": "Ellington",
+                    "addressRegion": "CT", "postalCode": "06029", "addressCountry": "US"},
+        "telephone": "+1-860-875-6684",
+        "email": "office@gerberconstructioninc.com",
+        "contactPoint": [
+            {"@type": "ContactPoint", "contactType": "bids and estimating", "email": "estimating@gerber.build"},
+            {"@type": "ContactPoint", "contactType": "general inquiries", "email": "office@gerberconstructioninc.com", "telephone": "+1-860-875-6684"},
+        ],
+        "areaServed": [{"@type": "State", "name": n} for n in
+                       ("Connecticut", "Massachusetts", "Rhode Island", "New York", "New Hampshire", "Vermont", "Maine")],
+        "knowsAbout": ["Sitework", "Site work", "Site development", "Earthwork", "Excavation", "Mass grading",
+                       "Underground utilities", "Storm drainage", "Sanitary sewer", "Water main",
+                       "Electrical ductbank", "Contaminated soils", "Heavy civil construction"],
+        "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Services", "itemListElement": [
+            svc("Underground utilities", "underground-utilities"), svc("Earthwork", "earthwork"), svc("Site work", "site-work")]},
+        "sameAs": [
+            "https://www.google.com/maps/place/?q=place_id:ChIJwVUw2hD35okRSR4f2bV_QRI",
+            "https://www.linkedin.com/company/gerber-construction-inc",
+            "https://www.instagram.com/gerberconstructioninc",
+            "https://www.facebook.com/GerberConstructionIncorporated/",
+        ],
+    }
+
+
+# Served at /llms.txt as plain text (same handoff). Exact approved text.
+LLMS_TXT = '# Gerber Construction Inc.\n\n> Heavy civil sitework contractor (site development, earthwork and underground utilities) based in Ellington, Connecticut, working for public and private owners across New England since 1984. Gerber Construction is not a general contractor or residential builder, and is not affiliated with Gerber Construction of Utah.\n\n## Key facts\n\n- Our crews self-perform excavation, mass grading, storm drainage, sanitary sewer, water main, electrical ductbank and controlled materials handling, including contaminated and regulated soils (HAZWOPER-trained crews).\n- When a contract includes site concrete, curbing or paving, we carry it and subcontract it.\n- We work for towns and cities, state and federal agencies, developers, private owners, and general contractors and construction managers, as the prime contractor or as a subcontractor, on full turnkey site packages or any part of the site scope.\n- We work across Connecticut and Massachusetts every day and take on projects throughout New England and beyond.\n- Fully bonded. Prequalified with the CT Department of Administrative Services (DAS), CTDOT and MassDOT. We work on Project Labor Agreement (PLA) jobs.\n- Address: 1 Nutmeg Drive, Ellington, CT 06029. Phone: (860) 875-6684.\n- Invitations to bid: estimating@gerber.build. General inquiries: office@gerberconstructioninc.com.\n\n## Services\n\n- [Underground utilities](https://www.gerberconstructioninc.com/services/underground-utilities.html): storm drainage, sanitary sewer, water main and services, electrical ductbank, precast structures and manholes.\n- [Earthwork](https://www.gerberconstructioninc.com/services/earthwork.html): mass excavation, GPS machine-control grading, crushing and screening, soil stabilization, contaminated soils, trucking.\n- [Site work](https://www.gerberconstructioninc.com/services/site-work.html): full turnkey site packages or any part of the site scope, from clearing to curb.\n\n## Projects\n\n- [Norwalk High School](https://www.gerberconstructioninc.com/projects/norwalk-high-school.html): City of Norwalk, Norwalk, CT, 2024-present. Site and utility contractor.\n- [UConn South Campus Infrastructure, Phase 1](https://www.gerberconstructioninc.com/projects/uconn-south-campus-infrastructure.html): University of Connecticut, Storrs, CT, 2023-2024. Utility backbone reroute.\n- [Bowers Elementary School](https://www.gerberconstructioninc.com/projects/bowers-elementary-school.html): Town of Manchester, Manchester, CT, 2022-2024. Site and utility contractor.\n- [Osgood Park](https://www.gerberconstructioninc.com/projects/osgood-park.html): City of New Britain, New Britain, CT, 2022-2023. Prime contractor.\n- [Route 140 over Charters Brook](https://www.gerberconstructioninc.com/projects/route-140-charters-brook.html): CTDOT, Ellington, CT, 2020-2021. Prime contractor, bridge replacement.\n- [UConn Athletic District](https://www.gerberconstructioninc.com/projects/uconn-athletic-district.html): University of Connecticut, Storrs, CT, 2019-2021. Site and utility contractor.\n- [UConn Innovation Partnership Building](https://www.gerberconstructioninc.com/projects/uconn-innovation-partnership-building.html): University of Connecticut, Storrs, CT, 2016-2017. Site and utility contractor.\n\n## Profiles\n\n- [LinkedIn](https://www.linkedin.com/company/gerber-construction-inc)\n- [Instagram](https://www.instagram.com/gerberconstructioninc)\n- [Facebook](https://www.facebook.com/GerberConstructionIncorporated/)\n- [Careers](https://careers.gerber.build)\n'
 
 
 def crumbs(items):
@@ -634,7 +679,7 @@ def page_home():
 </main>
 {footer(d)}
 """
-    return head("Gerber Construction | Heavy Civil & Utility Contractor, CT", "Heavy civil, underground utilities and turnkey site packages for schools, campuses, towns and states across New England since 1984.", d, main=True, path="", jsonld=org_jsonld()) + body + tail(main=True)
+    return head("Gerber Construction | Heavy Civil & Utility Contractor, CT", "Heavy civil, underground utilities and turnkey site packages for schools, campuses, towns and states across New England since 1984.", d, main=True, path="", jsonld=org_jsonld(), jsonld_extra=(organization_jsonld(),)) + body + tail(main=True)
 
 
 def lede_html(t):
@@ -830,6 +875,8 @@ def build():
             f.write(content)
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
         f.write(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n")
+    with open(os.path.join(DIST, "llms.txt"), "w", encoding="utf-8") as f:
+        f.write(LLMS_TXT)
     with open(os.path.join(DIST, "sitemap.xml"), "w") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
         for p in sitemap_paths:
