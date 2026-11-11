@@ -111,13 +111,14 @@ UTILITY_COLORS = [
 PROJECTS = [
     {
         "slug": "norwalk-high-school",
+        "opening": 'Gerber Construction is the site and utility contractor for the new Norwalk High School in Norwalk, Connecticut. We moved more than 100,000 cubic yards and installed about four miles of storm, sanitary and water pipe.',
+        "facts_line": 'City of Norwalk · Norwalk, CT · 2024–present · Mass excavation and grading, storm/sanitary/water utilities, deep structures and underdrain, retaining walls, athletic fields; curbing, sidewalks and paving carried in our contract',
         "title": "Norwalk High School",
         "town": "Norwalk, Connecticut",
         "line": "More than 100,000 cubic yards moved and four miles of pipe under a new high school campus.",
         "facts": [
             ("Location", "Norwalk, CT"),
             ("Owner", "City of Norwalk"),
-            ("Construction manager", "Gilbane"),
             ("Gerber's role", "Site and utility contractor"),
             ("Years", "2024 to present"),
         ],
@@ -127,13 +128,15 @@ PROJECTS = [
         "paras": [
             "Norwalk's new high school campus sits on a tight urban site with a lot of contractors working at once. Gerber's crews excavated, graded and balanced more than 100,000 cubic yards of material to build the building pads, the parking lots and the athletic fields.",
             "Below grade, we installed more than 21,000 linear feet of storm, sanitary and water pipe, including deep storm drainage structures and extensive underdrain systems. Above it, our contract carried the retaining walls, curbing, sidewalks and asphalt paving for both the main campus and the athletic complex.",
-            "The job ran on a phased schedule that had to hold for everyone else on site. We delivered a fully prepared site, ready for vertical construction, on time and within budget.",
+            "The job ran on a phased schedule that had to hold for everyone else on site.",
         ],
         "numbers": [("100,000+", "cubic yards excavated, graded and balanced"), ("21,000+", "linear feet of storm, sanitary and water pipe")],
         "scope": ["Mass excavation and grading", "Storm, sanitary and water utilities", "Deep storm structures and underdrain", "Retaining walls", "Curbing and sidewalks", "Asphalt paving", "Athletic field construction"],
     },
     {
         "slug": "bowers-elementary-school",
+        "opening": 'Gerber Construction was the site and utility contractor for Bowers Elementary School in Manchester, Connecticut. Our work included mass grading, storm, sanitary and water utilities, and below-grade stormwater storage.',
+        "facts_line": 'Town of Manchester · Manchester, CT · 2022–2024 · Mass excavation and grading, storm/sanitary/water utilities, subsurface stormwater storage; site concrete, curbing, sidewalks and paving carried in our contract',
         "title": "Bowers Elementary School",
         "town": "Manchester, Connecticut",
         "line": "The full site package for Manchester's new elementary school, with stormwater storage below grade.",
@@ -155,20 +158,22 @@ PROJECTS = [
     },
     {
         "slug": "osgood-park",
+        "opening": "Gerber Construction was the prime contractor on the City of New Britain's rebuild of Osgood Park. The work included demolition and abatement, a new multipurpose building, site utilities, lit fields and a splash pad.",
+        "facts_line": 'City of New Britain · New Britain, CT · 2022–2023 · Prime contractor: demolition and abatement, site utilities, mass and trench rock excavation; building, sports lighting, splash pad, concrete and paving carried in our contract',
         "title": "Osgood Park",
         "town": "New Britain, Connecticut",
-        "line": "A city park rebuilt with Gerber as general contractor: new building, lit fields and a splash pad.",
+        "line": "A city park rebuilt with Gerber as prime contractor: new building, lit fields and a splash pad.",
         "facts": [
             ("Location", "New Britain, CT"),
             ("Owner", "City of New Britain"),
-            ("Gerber's role", "General contractor"),
+            ("Gerber's role", "Prime contractor"),
             ("Years", "2022 to 2023"),
         ],
         "photo": "The new fields at Osgood Park from the air, April 2023",
         "img": "osgood-field",
         "gallery": [("osgood-building", "The new park building, April 2023"), ("osgood-excavator", "Site work at Osgood Park")],
         "paras": [
-            "Osgood Park is a neighborhood park in New Britain, and Gerber was the general contractor for its renovation. We took down the old bathroom and concession buildings, handled the abatement that came with them, and built the new multipurpose building in their place.",
+            "Osgood Park is a neighborhood park in New Britain, and Gerber was the prime contractor for its renovation. We took down the old bathroom and concession buildings, handled the abatement that came with them, and built the new multipurpose building in their place.",
             "Around it, our crews rebuilt the grounds: site utilities, mass and trench rock excavation, new sports lighting on the fields and a splash pad for the summer. It's the kind of job where the earthwork, the utilities and the building all have to come from one team that owns the whole schedule.",
         ],
         "numbers": [],
@@ -176,6 +181,8 @@ PROJECTS = [
     },
     {
         "slug": "route-140-charters-brook",
+        "opening": "Gerber Construction was CTDOT's prime contractor for the replacement of Bridge No. 02668, which carries Route 140 over Charters Brook in Ellington, Connecticut. We built it with the road live and the brook flowing.",
+        "facts_line": 'CTDOT · Ellington, CT · 2020–2021 · Prime contractor: cofferdam and water handling, excavation and sheeting, precast structure placement, roadway reconstruction; cast-in-place concrete and paving carried in our contract',
         "title": "Route 140 over Charters Brook",
         "town": "Ellington, Connecticut",
         "line": "A CTDOT bridge replacement over Charters Brook in our hometown.",
@@ -197,6 +204,8 @@ PROJECTS = [
     },
     {
         "slug": "uconn-athletic-district",
+        "opening": "Gerber Construction was the site and utility contractor for the University of Connecticut's Athletic District in Storrs. We built the site and utilities under the new soccer stadium, baseball and softball fields and hockey arena.",
+        "facts_line": 'University of Connecticut · Storrs, CT · 2019–2021 · Site development and mass grading, storm drainage, sanitary sewer and water, electrical ductbank; site concrete and paving carried in our contract',
         "title": "UConn Athletic District",
         "town": "Storrs, Connecticut",
         "line": "Site development and utilities beneath UConn's new stadium district.",
@@ -218,6 +227,8 @@ PROJECTS = [
     },
     {
         "slug": "uconn-innovation-partnership-building",
+        "opening": "Gerber Construction was the site and utility contractor for the University of Connecticut's Innovation Partnership Building, the research building that anchors UConn Tech Park in Storrs.",
+        "facts_line": 'University of Connecticut · Storrs, CT · 2016–2017 · Mass excavation and grading, storm/sanitary/water utilities, electrical ductbank; site concrete and paving carried in our contract',
         "title": "UConn Innovation Partnership Building",
         "town": "Storrs, Connecticut",
         "line": "Earthwork and utilities for the research building that anchors UConn's Technology Park.",
@@ -239,20 +250,21 @@ PROJECTS = [
     },
     {
         "slug": "uconn-south-campus-infrastructure",
+        "opening": "Gerber Construction rerouted and rebuilt the utility backbone under the University of Connecticut's South Campus in Storrs, ahead of new residence halls and a dining hall.",
+        "facts_line": 'University of Connecticut · Storrs, CT · 2023–2024 · Steam line relocation, storm/sanitary/water utilities, pump station work, Gilbert Road and Mansfield Road reconstruction, phasing and traffic control',
         "title": "UConn South Campus Infrastructure, Phase 1",
         "town": "Storrs, Connecticut",
         "line": "Every utility under South Campus rerouted ahead of the new residence hall, with classes in session.",
         "facts": [
             ("Location", "Storrs, CT"),
             ("Owner", "University of Connecticut"),
-            ("Construction manager", "O&G Industries"),
             ("Years", "2023 to 2024"),
         ],
         "photo": "The braced excavation at South Campus with the crew down in it, April 2024",
         "img": "south-campus-excavation",
         "gallery": [("south-campus-box", "Pipe going in behind the bracing, April 2024"), ("south-campus-pipe", "Setting large-diameter pipe in the trench box, March 2024"), ("south-campus-trench", "Pre-insulated piping in the trench, April 2024"), ("south-campus-structure", "Setting a precast structure, December 2023")],
         "paras": [
-            "Under UConn's South Campus runs the utility backbone for the residence halls and dining hall that were about to be built. Working for O&G Industries, Gerber rerouted and rebuilt it ahead of the new construction.",
+            "Under UConn's South Campus runs the utility backbone for the residence halls and dining hall that were about to be built. Gerber rerouted and rebuilt it ahead of the new construction.",
             "Steam, storm, sanitary and water lines, pump station work, and the Gilbert Road and Mansfield Road intersection, all on an open campus and around the academic calendar, from 2023 into 2024. Phasing, traffic control and keeping buildings in service were as much the job as the pipe.",
         ],
         "numbers": [],
@@ -277,6 +289,8 @@ STORY = [
 SERVICES = [
     {
         "slug": "underground-utilities",
+        "opening": 'Gerber Construction is an underground utility contractor based in Ellington, Connecticut. Our own crews install storm drainage, sanitary sewer, water main and electrical ductbank for public and private owners across New England.',
+        "facts_line": 'Self-performed: storm drainage · sanitary sewer · water main and services · electrical ductbank · precast structures and manholes · Since 1984 · Prequalified: CT DAS, CTDOT, MassDOT',
         "pillar": "Underground utilities",
         "title": "Underground utility contractor in Connecticut",
         "kicker": "Underground utilities",
@@ -292,10 +306,12 @@ SERVICES = [
     },
     {
         "slug": "earthwork",
+        "opening": 'Gerber Construction is an earthwork and excavation contractor based in Ellington, Connecticut. Our own operators and fleet handle mass excavation, grading, soil stabilization and contaminated soils for projects across New England.',
+        "facts_line": 'Self-performed: mass excavation · GPS machine-control grading · crushing and screening · soil stabilization · contaminated and regulated soils (HAZWOPER-trained crews) · trucking · Since 1984',
         "pillar": "Earthwork",
         "title": "Earthwork and excavation contractor in Connecticut",
         "kicker": "Earthwork",
-        "h1": "Earthwork. We move the dirt ourselves.",
+        "h1": "Earthwork and excavation, self-performed with our own fleet.",
         "desc": "Mass excavation, grading, GPS machine control, crushing and screening, and soil stabilization for public and private sites. Gerber Construction, Ellington, CT.",
         "paras": [
             "Gerber started in 1984 moving dirt, and it's still the core of what we do. Mass excavation, cut-and-fill balance, rock, and GPS-controlled finish grading, all with our own fleet and our own operators.",
@@ -306,10 +322,12 @@ SERVICES = [
     },
     {
         "slug": "site-work",
+        "opening": 'Gerber Construction is a sitework contractor based in Ellington, Connecticut. We deliver full turnkey site packages, or any part of the site scope, for owners, developers, general contractors and construction managers across New England.',
+        "facts_line": 'Our crews: earthwork and utilities · Carried in our contract: site concrete, curbing, paving · Role: prime contractor or subcontractor · Since 1984',
         "pillar": "Turnkey site packages",
         "title": "Site work contractor in Connecticut | Turnkey site packages",
         "kicker": "Site work",
-        "h1": "Turnkey site packages, from clearing to curb.",
+        "h1": "Site work, from clearing to curb. All of it or any part of it.",
         "desc": "One contract for the whole site: erosion control, earthwork, utilities, retaining walls, site concrete and paving. Gerber Construction, Ellington, CT.",
         "paras": [
             "A turnkey site package puts the whole site under one contract: erosion control, clearing, earthwork, utilities, retaining walls, site concrete, curbing, paving and restoration. One team, one schedule and one responsible party.",
