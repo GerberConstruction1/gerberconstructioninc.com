@@ -236,6 +236,8 @@ h4{font-family:var(--font-body);font-weight:600;font-size:18px}
 .page-hero .kicker{color:var(--gold);font-weight:500;margin-bottom:14px}
 .page-hero h1.display{font-size:clamp(44px,7.5vw,96px)}
 .page-hero .lede{margin:20px 0 0;color:rgba(242,243,238,.86)}
+.page-hero .opening{color:var(--paper)}
+.page-hero .facts-line{margin:14px 0 0;max-width:52em;font-size:15px;line-height:1.55;color:var(--gold)}
 
 /* Project page */
 .factbar{background:var(--paper-2);border-bottom:1px solid var(--line)}
@@ -635,6 +637,20 @@ def page_home():
     return head("Gerber Construction | Heavy Civil & Utility Contractor, CT", "Heavy civil, underground utilities and turnkey site packages for schools, campuses, towns and states across New England since 1984.", d, main=True, path="", jsonld=org_jsonld()) + body + tail(main=True)
 
 
+def lede_html(t):
+    return '<p class="lede">' + esc(t) + '</p>'
+
+
+def opening_block(x, fallback=""):
+    # Plain-fact first sentence + one-line facts, directly under the H1 (Nov 11 AEO pass).
+    if not x.get("opening"):
+        return fallback
+    out = f'<p class="lede opening">{esc(x["opening"])}</p>'
+    if x.get("facts_line"):
+        out += f'<p class="facts-line">{esc(x["facts_line"])}</p>'
+    return out
+
+
 def page_project(i):
     d = 1
     p = PROJECTS[i]
@@ -663,7 +679,7 @@ def page_project(i):
     body = f"""
 {nav(d)}
 <main id="main">
-<section class="page-hero"><div class="wrap"><div class="kicker">{esc(p['town'])}</div><h1 class="display">{esc(p['title'])}</h1><p class="lede">{esc(p['line'])}</p></div></section>
+<section class="page-hero"><div class="wrap"><div class="kicker">{esc(p['town'])}</div><h1 class="display">{esc(p['title'])}</h1>{opening_block(p, lede_html(p['line']))}</div></section>
 <section class="factbar"><div class="wrap"><dl>{facts}</dl></div></section>
 <section class="band band--paper">
   <div class="wrap">
@@ -703,7 +719,7 @@ def page_service(sv):
     body = f"""
 {nav(d)}
 <main id="main">
-<section class="page-hero"><div class="wrap"><div class="kicker">{esc(sv['kicker'])}</div><h1 class="display">{esc(sv['h1'])}</h1><p class="lede">{esc(pl['body'])}</p></div></section>
+<section class="page-hero"><div class="wrap"><div class="kicker">{esc(sv['kicker'])}</div><h1 class="display">{esc(sv['h1'])}</h1>{opening_block(sv)}<p class="lede">{esc(pl['body'])}</p></div></section>
 <section class="band band--paper">
   <div class="wrap">
     <figure class="figure">{ph(cap, 'ph--wide', slug=pslug, depth=d, eager=True, alt=cap)}<figcaption>{esc(cap)}</figcaption></figure>
